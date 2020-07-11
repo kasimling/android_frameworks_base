@@ -242,6 +242,11 @@ abstract class DisplayDevice {
         } else {
             viewport.physicalPort = null;
         }
+
+	//force display # 0 rotated 90
+	if (viewport.displayId == 0) {
+	    viewport.orientation = 1;
+	}
     }
 
     /**
