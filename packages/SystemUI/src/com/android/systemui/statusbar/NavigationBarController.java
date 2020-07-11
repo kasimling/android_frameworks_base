@@ -121,6 +121,7 @@ public class NavigationBarController implements Callbacks {
 
     public void createNavigationBars(final boolean includeDefaultDisplay,
             RegisterStatusBarResult result, SystemUiVisibility systemUiVisibility) {
+		Log.d(TAG, "#### createNavigationBars: includeDefaultDisplay: " + includeDefaultDisplay );
         Display[] displays = mDisplayManager.getDisplays();
         for (Display display : displays) {
             if (includeDefaultDisplay || display.getDisplayId() != DEFAULT_DISPLAY) {
@@ -142,6 +143,7 @@ public class NavigationBarController implements Callbacks {
 
     void createNavigationBar(Display display, RegisterStatusBarResult result,
             SystemUiVisibility systemUiVisibility) {
+		Log.d("debug boot", "#### createNavigationBar: display: " + display + "systemUiVisibility: " + systemUiVisibility);
         if (display == null) {
             return;
         }

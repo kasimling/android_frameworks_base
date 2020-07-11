@@ -1032,6 +1032,7 @@ public class CarStatusBar extends StatusBar implements CarBatteryController.Batt
 
     @Override
     protected void createNavigationBar(@Nullable RegisterStatusBarResult result) {
+		Log.d(TAG, "##### CarStatusBar - createNavigationBar");
         mShowBottom = mContext.getResources().getBoolean(R.bool.config_enableBottomNavigationBar);
         mShowLeft = mContext.getResources().getBoolean(R.bool.config_enableLeftNavigationBar);
         mShowRight = mContext.getResources().getBoolean(R.bool.config_enableRightNavigationBar);

@@ -724,7 +724,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         final TunerService tunerService = Dependency.get(TunerService.class);
         tunerService.addTunable(this, SCREEN_BRIGHTNESS_MODE);
         tunerService.addTunable(this, STATUS_BAR_BRIGHTNESS_CONTROL);
-        tunerService.addTunable(this, FORCE_SHOW_NAVBAR);
+        //tunerService.addTunable(this, FORCE_SHOW_NAVBAR);
 
         mDisplayManager = mContext.getSystemService(DisplayManager.class);
 
@@ -1269,6 +1269,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     // TODO(b/117478341): This was left such that CarStatusBar can override this method.
     // Try to remove this.
     protected void createNavigationBar(@Nullable RegisterStatusBarResult result) {
+		Log.d(TAG, "##### PhoneStatusBar: createNavigationBar");
         mNavigationBarController.createNavigationBars(true /* includeDefaultDisplay */, result,
                 mNavigationBarSystemUiVisibility);
     }
@@ -3557,7 +3558,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                 || (mDozing && mDozeServiceHost.shouldAnimateScreenOff() && sleepingFromKeyguard);
 
         mNotificationPanel.setDozing(mDozing, animate, mWakeUpTouchLocation);
+		if (mVisualizerView != null) {
         mVisualizerView.setDozing(mDozing);
+		}
         updateQsExpansionEnabled();
         Trace.endSection();
     }
@@ -3735,7 +3738,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         checkBarModes();
         updateScrimController();
         mPresenter.updateMediaMetaData(false, mState != StatusBarState.KEYGUARD);
+		if (mVisualizerView != null) {
         mVisualizerView.setStatusBarState(newState);
+		}
         updateKeyguardState();
         Trace.endSection();
     }
@@ -4016,14 +4021,18 @@ public class StatusBar extends SystemUI implements DemoMode,
         @Override
         public void onScreenTurnedOn() {
             mScrimController.onScreenTurnedOn();
+			if (mVisualizerView != null) {
             mVisualizerView.setVisible(true);
+			}
         }
 
         @Override
         public void onScreenTurnedOff() {
             mFalsingManager.onScreenOff();
             mScrimController.onScreenTurnedOff();
+			if (mVisualizerView != null) {
             mVisualizerView.setVisible(false);
+			}
             updateIsKeyguard();
         }
     };

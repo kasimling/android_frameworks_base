@@ -1091,6 +1091,7 @@ public class NavigationBarFragment extends LifecycleFragment implements Callback
     };
 
     public static View create(Context context, FragmentListener listener) {
+		Log.d("debug boot", "#### NavigationBarFragment.create #######");
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
                 LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.TYPE_NAVIGATION_BAR,
@@ -1110,7 +1111,7 @@ public class NavigationBarFragment extends LifecycleFragment implements Callback
         View navigationBarView = LayoutInflater.from(context).inflate(
                 R.layout.navigation_bar_window, null);
 
-        if (DEBUG) Log.v(TAG, "addNavigationBar: about to add " + navigationBarView);
+        Log.d("debug boot", "addNavigationBar: about to add " + navigationBarView);
         if (navigationBarView == null) return null;
 
         final NavigationBarFragment fragment = FragmentHostManager.get(navigationBarView)
