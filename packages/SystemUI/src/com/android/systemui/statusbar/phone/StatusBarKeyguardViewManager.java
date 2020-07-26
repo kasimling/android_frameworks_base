@@ -58,6 +58,7 @@ import com.android.systemui.statusbar.phone.KeyguardBouncer.BouncerExpansionCall
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.KeyguardMonitor;
 import com.android.systemui.statusbar.policy.KeyguardMonitorImpl;
+import com.android.systemui.statusbar.VisualizerView;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -533,7 +534,8 @@ public class StatusBarKeyguardViewManager implements RemoteInputController.Callb
             mMediaManager.updateMediaMetaData(false, animate && !occluded);
         }
         mStatusBarWindowController.setKeyguardOccluded(occluded);
-        mStatusBar.getVisualizer().setOccluded(occluded);
+        VisualizerView v = mStatusBar.getVisualizer();
+	if (v != null) v.setOccluded(occluded);
 
         // setDozing(false) will call reset once we stop dozing.
         if (!mDozing) {
